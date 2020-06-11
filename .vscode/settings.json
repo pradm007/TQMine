@@ -20,6 +20,7 @@
         "iterator": "cpp",
         "istream": "cpp",
         "map": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "regex": "cpp"
     }
 }

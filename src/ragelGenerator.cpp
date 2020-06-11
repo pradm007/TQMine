@@ -293,7 +293,7 @@ string RagelGenerator::getFullRagelContent(string &fullRagelExpression) {
         for (int i=0; i<eventTRE_perInstance-1; i++) {
             for (int j=0; j<2; j++) {
                 long time_diff = processingEventTime[i+1][0] - processingEventTime[i][1];
-                if (!(inputEventTime[i][0] == 0 && inputEventTime[i][1] == 0) &&
+                if (!(inputQuantTime[i][0] == 0 && inputQuantTime[i][1] == 0) &&
 				    ! (inputQuantTime[i][0] <= time_diff && time_diff <= inputQuantTime[i][1]) ) {
 				    if (DEBUG) {
                         cout << "Time diff did not match among TRE"<<i<< " and TRE"<<(i+1)<<endl;

@@ -113,6 +113,7 @@ void TracePattern::loopAndPresentData(string &patternKey, vector<vector<string> 
 				for (int i=0;i<numberListInDouble.size();i++) {
 					VAR += ( pow( (MU - numberListInDouble[i][j]) , 2) / numberListInDouble.size());
 				}
+				VAR = sqrt(VAR);
 
 				cout << "For placeholder at " << j+1 << " : " << endl;
 				cout << "\t Mean " << MU << endl;
@@ -142,10 +143,12 @@ void TracePattern::loadAndTrace() {
 
   //Prepare readstream for traceEM and traceTime
 //   ifstream myfileTraceEM("./traceBin/traceEM");
-  ifstream myfileTraceEM("./traceBin/data-01_cleaned_EM");
+//   ifstream myfileTraceEM("./traceBin/data-01_cleaned_EM");
+  ifstream myfileTraceEM("./traceBin/data-all_cleaned_EM");
 //   ifstream myfileTraceEM("./traceBin/traceEM_ori");
 //   ifstream myfileTraceTime("./traceBin/traceTime");
-  ifstream myfileTraceTime("./traceBin/data-01_cleaned_Time");
+//   ifstream myfileTraceTime("./traceBin/data-01_cleaned_Time");
+  ifstream myfileTraceTime("./traceBin/data-all_cleaned_Time");
 //   ifstream myfileTraceTime("./traceBin/traceTime_ori");
   string inputEM_string, inputTime_string;
   

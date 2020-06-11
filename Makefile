@@ -10,7 +10,7 @@ COMMAND_TRACEGEN := tracegen
 COMMAND_MAIN := main
 THREADS := 2
 CSVOUTPUT := 1
-DISPLAY_MAP :=1
+DISPLAY_MAP :=0
 
 LIBRARIES	:= src/ragelGenerator.cpp src/tracePattern.cpp
 
