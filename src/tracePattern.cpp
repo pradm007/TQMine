@@ -144,11 +144,13 @@ void TracePattern::loadAndTrace() {
   //Prepare readstream for traceEM and traceTime
 //   ifstream myfileTraceEM("./traceBin/traceEM");
 //   ifstream myfileTraceEM("./traceBin/data-01_cleaned_EM");
-  ifstream myfileTraceEM("./traceBin/data-all_cleaned_EM");
+//   ifstream myfileTraceEM("./traceBin/data-all_cleaned_EM");
+  ifstream myfileTraceEM("./traceBin/mag_EM");
 //   ifstream myfileTraceEM("./traceBin/traceEM_ori");
 //   ifstream myfileTraceTime("./traceBin/traceTime");
 //   ifstream myfileTraceTime("./traceBin/data-01_cleaned_Time");
-  ifstream myfileTraceTime("./traceBin/data-all_cleaned_Time");
+//   ifstream myfileTraceTime("./traceBin/data-all_cleaned_Time");
+  ifstream myfileTraceTime("./traceBin/mag_Time");
 //   ifstream myfileTraceTime("./traceBin/traceTime_ori");
   string inputEM_string, inputTime_string;
   
@@ -172,7 +174,7 @@ void TracePattern::loadAndTrace() {
       unordered_map<string, vector<vector<string> > >* patternMap = f(inputEM_string, inputTime_string);
 
       if (CSVOUTPUT && inputEM_string.size() < 10000000) { //10 MB
-        string outputFile = "./output/mine-map-timed.csv";
+        string outputFile = "./output/mine-map-timed_mag.csv";
         if (Util::writeToCSV(outputFile, *patternMap) != 0) {
           cout << "Output file generated successfully" << endl;
         } else {
