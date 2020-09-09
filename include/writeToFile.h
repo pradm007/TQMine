@@ -45,15 +45,15 @@ class Util {
   static int writeToCSV(const string fileName, const unordered_map<string, vector<vector<string> > > &patternMap) {
     ofstream csvFile;
     csvFile.open(fileName);
-    csvFile << "Pattern,Numbers\n";
+    csvFile << "Pattern,Count,Numbers\n";
     for (auto itr = patternMap.begin(); itr != patternMap.end(); itr++) {
       string pattern = "" + (string) itr->first;
 
 
       vector<vector<string> > numberList = itr->second;	
-      csvFile<<pattern<<endl;
+      csvFile<<pattern<<","<<numberList.size()<<endl;
       for (int i =0; i < numberList.size(); i++) {
-        string tracedNumber=",";
+        string tracedNumber=",,";
         for (int j=0;j<numberList[i].size(); j++) {
           if (numberList[i][j].size() > 0) {
             tracedNumber += numberList[i][j] + ",";
