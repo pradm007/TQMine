@@ -12,12 +12,15 @@ int alphabetLength = 3;
 void _main_mineTrace() {
 
     // Take the input
-    cout << "Enter Regex pattern : ";
-    // pattern = "<0>[0,100000]M[1000,6000]<1>[0,100000]";
+    cout << "Enter Regex pattern: " << endl << "Sample Format: " << endl 
+         << "<0>[0,0]M[1201,6000]<1>[0,0] : Denotes Event 0 in time bound [0,0] unit followed by" << endl
+         << "                               quantifiable value in [1201, 6000] unit followed by  " << endl
+         << "                               Event 1 in time bound [0,0]" << endl;
+    pattern = "<0>[0,0]M[1201,6000]<1>[0,0]";
     cin >> pattern;
 
     cout << "Enter event length (recommended max limit 100): ";
-    // alphabetLength = 10;
+    alphabetLength = 10;
     cin >> alphabetLength;
 
     // Generate ragel file
