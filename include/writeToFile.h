@@ -66,6 +66,14 @@ class Util {
       }
     }
   }
+  
+  static int writeToCSV_aggregate(const string fileName, const string content) {
+    ofstream csvFile;
+    csvFile.open(fileName);
+    csvFile << content;
+    
+    return 1;
+  }
 
   static int willingToQuit(string &input) {
 	  return input.length() == 1 && ((char) input[0] == 'N' || (char) input[0] == 'n');
