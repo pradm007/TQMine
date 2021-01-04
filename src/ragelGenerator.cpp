@@ -28,7 +28,13 @@ void RagelGenerator::prepareAlphabetArr(int alphabetLength) {
         for (int j=0;j<MAX_EVENT_REPRESENTATION;j++) {
             for (int i = 0; i < bucketSize; i++) {
                 string repsentationMarker(1,(char)(97 + j));
-                repsentationMarker += to_string(i);
+                
+                //TODO: For now works only for less than 100 events. Increase this scope
+                if (bucketSize > 9 && i < 10){
+                    repsentationMarker += '0' + to_string(i); // takes care of A01,A02,A03...
+                } else {
+                    repsentationMarker += to_string(i);
+                }
 
                 alphabetArr.push_back(repsentationMarker);
                 alphabetVisitied.push_back(0);
