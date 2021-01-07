@@ -113,8 +113,12 @@ vector<double> TracePattern::loopAndPresentData(string &patternKey, vector<vecto
 		for (int j = 0; j < innerSize; j++) {
 		long double MU = 0;
 		long double VAR = 0;
+		long _min = LONG_MAX;
+		long _max = 0;
 		for (int i = 0; i < numberListInDouble.size(); i++) {
 			MU += (numberListInDouble[i][j] / numberListInDouble.size());
+			_min = min(_min, (long)numberListInDouble[i][j]);
+			_max = max(_max, (long)numberListInDouble[i][j]);
 		}
 
 		for (int i = 0; i < numberListInDouble.size(); i++) {
@@ -126,10 +130,14 @@ vector<double> TracePattern::loopAndPresentData(string &patternKey, vector<vecto
 			cout << "For placeholder at " << j + 1 << " : " << endl;
 			cout << "\t Mean " << MU << endl;
 			cout << "\t Variance " << VAR << endl;
+			cout << "\t Min " << _min << endl;
+			cout << "\t Max " << _max << endl;
 			cout << endl;
 		} else {
 			aggregateMetric.push_back((roundf(MU * 100) / 100));
 			aggregateMetric.push_back((roundf(VAR * 100) / 100));
+			aggregateMetric.push_back((double)_min);
+			aggregateMetric.push_back((double)_max);
 			return aggregateMetric;
 		}
 		}
@@ -191,7 +199,7 @@ void TracePattern::loadAndTrace() {
       }
 
 	  /** Do the aggreagation and insert to file **/
-	  string csvFileContent  = "Pattern,Count,Mean,Variance\n";
+	  string csvFileContent  = "Pattern,Count,Mean,Variance,Min,Max\n";
 	  for (auto itr = patternMap->begin(); itr != patternMap->end(); itr++) {
 		string pattern = (string) itr->first;
 
@@ -202,8 +210,10 @@ void TracePattern::loadAndTrace() {
 		
 		double mean = agg[0];
 		double variance = agg[1];
+		double _min = agg[2];
+		double _max = agg[3];
 		
-		csvFileContent += pattern + "," + to_string(count) + "," + to_string(mean) + "," + to_string(variance) + "\n";
+		csvFileContent += pattern + "," + to_string(count) + "," + to_string(mean) + "," + to_string(variance) + "," + to_string(_min) + "," + to_string(_max) + "\n";
 	  }
 	  
 	  if (Util::writeToCSV_aggregate(OUTPUT_FILE_PATH_AGG, csvFileContent) != 0) {
