@@ -46,6 +46,7 @@ class Util {
     ofstream csvFile;
     csvFile.open(fileName);
     csvFile << "Pattern,Count,Numbers\n";
+    // csvFile << "Pattern,Count,Numbers,Length\n";
     for (auto itr = patternMap.begin(); itr != patternMap.end(); itr++) {
       string pattern = "" + (string) itr->first;
 
@@ -57,6 +58,7 @@ class Util {
         for (int j=0;j<numberList[i].size(); j++) {
           if (numberList[i][j].size() > 0) {
             tracedNumber += numberList[i][j] + ",";
+            // tracedNumber += numberList[i][j] + "," + ((numberList[i][j].size() > 0) ? (to_string(numberList[i][j].size()) + ",") : "");
           }
         }
         if (!tracedNumber.empty()) {

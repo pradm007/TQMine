@@ -467,6 +467,7 @@ string RagelGenerator::getFullRagelContent(string &fullRagelExpression) {
         long previousEventTime=0;
         long _eventTime = 0;
         int _quantValue = 0;
+        // string _quantValue = "";
         int currentTRECount = 0;
         int _has_event_entered = 0; // Determines if we enter an event stage in TRE. Gets reset immediately at M stage
         int _event_OR_quant_stage = 0; //Flips between 0 - unknown, 1 - Event, 2 - Quant
@@ -549,7 +550,9 @@ string RagelGenerator::getFullRagelContent(string &fullRagelExpression) {
                     //This would mean, the previous encounter was that of a Quant
                     numberList->push_back("");
                     numberList->push_back(to_string(_quantValue));
+                    // numberList->push_back(_quantValue);
                     _quantValue = 0;
+                    // _quantValue = "";
                 }
                 
                 if (_event_OR_quant_stage == 1) {
@@ -572,6 +575,8 @@ string RagelGenerator::getFullRagelContent(string &fullRagelExpression) {
                     _event_OR_quant_stage = 2;
                     
                     _quantValue = _quantValue*10 + (fc - '0');
+                    // _quantValue += fc;
+                    // _quantValue++;
                     
                     if (_has_event_entered != 0) {
                         currentTRECount++; //Increment TRE instance counter only if _has_event_entered was true. This takes care of multiple quant fields
