@@ -15,9 +15,6 @@ TRACE_EM_PATH := "traceBin/mag_EM"
 TRACE_TIME_PATH := "./traceBin/mag_Time"
 OUTPUT_FILE_PATH := "./output/mine-map-timed_mag.csv"
 
-TRACE_EM_PATH := "traceBin/serverlog_EM_10000"
-TRACE_TIME_PATH := "./traceBin/serverlog_Time_10000"
-OUTPUT_FILE_PATH := "./output/mine-map-timed_server.csv"
 
 DO_AGGREGATE := true
 # DO_AGGREGATE := false
