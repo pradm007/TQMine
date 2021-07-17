@@ -164,6 +164,8 @@ void TracePattern::loadAndTrace() {
   cout << "\t\t File Name : " << shareObject_FileName << endl;
   cout << "\t\t Status : Success" << endl;
 
+  cout << "Opening input files: " << endl << "Trace: " << TRACE_EM_PATH << endl << "Time: " << TRACE_TIME_PATH << endl;
+	
   //Prepare readstream for traceEM and traceTime
   ifstream myfileTraceEM(TRACE_EM_PATH);
   ifstream myfileTraceTime(TRACE_TIME_PATH);

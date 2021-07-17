@@ -34,7 +34,7 @@ class RagelGenerator {
     void prepareAlphabetArr(int alphabetLength = 1);
     void generateExpression(string &dynamicRegexExpression, int currentIndex, int alphabetIndex, const int alphabetLength, string prefix);
     string getRagelExpression(string &dynamicRegexExpression);
-    string getFullRagelContent(string &fullRagelExpression);
+    string getFullRagelContent(string &fullRagelExpression, int alphabetLengthSet);
     void generateRagelFile(string &dynamicRegexExpression, int alphabetLength = 1);
     void determineQuantPlaceholdersInExpression(string &dynamicRegexExpression);
     

@@ -245,7 +245,7 @@ void RagelGenerator::printArray(vector<vector<int>> &vec, string label = "array"
   }
 }
 
-string RagelGenerator::getFullRagelContent(string &fullRagelExpression) {
+string RagelGenerator::getFullRagelContent(string &fullRagelExpression, int alphabetLengthSet) {
     string content = R"(
     #include <bits/stdc++.h>
     #include <omp.h>
@@ -677,9 +677,9 @@ string RagelGenerator::getFullRagelContent(string &fullRagelExpression) {
         
             FLOAT_REGEX = /[0-9]*\.?[0-9]+/;
             NUM = [0-9]+;
-            EVENTREP = [a-z]+;
+            EVENTREP = [a-z]|[A-Z];
             delimiters = space <to(DELIMITERS);
-            subeventSection = ((delimiters)((lower) <to(EVENT) )([0-9]{0} <to(EVENT_IDENTITY)));
+            subeventSection = ((delimiters)((lower) <to(EVENT) )([0-9]{)" + to_string(alphabetLengthSet) + R"(} <to(EVENT_IDENTITY)));
             
             eventSection = (subeventSection %from(EVENT_EXIT));
             numberSection = ((delimiters)(NUM <to(NUM)));
@@ -924,7 +924,15 @@ void RagelGenerator::generateRagelFile(string &dynamicRegexExpression, int alpha
     
     string fullRagelExpression = getRagelExpression(dynamicRegexExpression);
     getDynamicEventTimeDefinition();
-    string ragelContent = getFullRagelContent(fullRagelExpression);
+    
+    int alphabetLengthSet = 0;
+    int alphabetCount = 26;
+    while(alphabetCount < alphabetLength) {
+        alphabetCount *= 10;
+        alphabetLengthSet++;
+    }
+    
+    string ragelContent = getFullRagelContent(fullRagelExpression, alphabetLengthSet);
 
     if (Util::writeToFileFunc(fileName, ragelContent) != 0) {
     cout << "Ragel FSM file generated successfully" << endl;
